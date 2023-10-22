@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta charset="UTF-8">
 
-<title>Clientes</title> 
-
+    <title>CLIENTES</title>
+<style>
+    th {
+        background-color: rgb(18, 53, 50);
+        text-align: center;
+        color: aliceblue;
+        padding: 20px;
+        padding-left: 85px;
+        padding-right: 85px;
+        border-color: black;
+        border-radius: 2px;
+    }
+    td {
+        background-color: rgb(142, 143, 143);
+        text-align: center;
+        color: rgb(255, 255, 255);
+        padding: 15px;
+        border-color: black;
+        border-radius: 2px;
+    }
+</style>
 </head>
-    <body>
-        <h1>Rota da página de Clientes da WEB APP</h1>
-        <h1>Uso de render_template</h1>
-        <h1>feito por Felipe Mortari</h1>
-    </body>
+
+<body>
+    {% extends "base.html" %}
+
+    {% block title %}Clientes{% endblock %}
+
+    {% block content %}
+    <form action="{{ url_for('cliente.formCliente') }}" method="GET">
+        <h1>Clientes</h1>
+        <button type="submit" name="formNovo">Novo</button>
+        </form>
+        <br>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Senha</th>
+                <th scope="col">CPF</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">...</th>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td style="background-color: darkgoldenrod;"><i class="fas fa-edit">editar</i></td>
+                <td style="background-color: rgb(184, 20, 11);"><i class="fas fa-trash">apagar</i></td>
+            </tr>
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+
 </html>

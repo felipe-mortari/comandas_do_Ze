@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %}</title>
+    {% block style %}
+    <style>
+        body {
+            background: #062827;
+            color: #ffffff;
+          
+        }
+
+        .content {
+            min-height: calc(100vh - 70px);
+            /* Ajuste a altura conforme necessário */
+        }
+
+        .footer {
+            background-color: #343a40;
+            /* Cor de fundo do rodapé */
+            color: #fffdfd;
+            /* Cor do texto no rodapé */
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 85%;
+           
+
+        }
+
+        .navbar {
+            display: flex;
+            background-color: rgb(21, 85, 83);
+            color: #fffdfd;
+        }
+
+        .col-sm-2,
+        .col-sm-4,
+        .col-sm-3 {
+            color: aliceblue;
+            font-size: large;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: rgb(246, 247, 248);
+            text-decoration: none;
+        }
+        .menupricipal{
+            font-size: medium;
+            color: aliceblue;
+
+        }
+    </style>
+    {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+
+    {% block menu %}
+    <nav class="navbar">
+        <div class="container mt-4">
+            <h1 class="menuprincipal">Comandas do zé</h1>
+            <!-- Grid do Bootstrap para alinhar elementos lado a lado -->
+            <div class="row">
+                <div class="col-sm-2">
+                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('index.formIndex') }}">HOME</a>
+                </div>
+                <div class="col-sm-4">
+                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('funcionario.formListaFuncionario') }}">FUNCIONÁRIOS</a>
+                </div>
+                <div class="col-sm-3">
+                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('cliente.formListaCliente') }}">CLIENTES</a>
+                </div>
+                <div  class="col-sm-3">
+                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('produto.formListaProduto') }}">PRODUTOS</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+        {% block footer %}
+        <div class="footer">
+            &copy; Copyright 2023 by <a href="http://127.0.0.1:5000/">Felipe Kruchinschi Mortari</a>.
+        </div>{% endblock %}
+    </div>
+
+    {% block js %}
+    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+    {% endblock %}
+
+</body>
+
+</html>
