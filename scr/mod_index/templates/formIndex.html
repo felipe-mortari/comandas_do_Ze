@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-
-<title>index</title> 
-
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <style>
+        .titulo {
+            color: rgb(10, 23, 34);
+            text-align: center;
+            font-size: xx-large;
+            font-family: fantasy, Geneva, Tahoma, sans-serif;
+        }
+    </style>
 </head>
-    <body>
-        <h1>Rota da página de Index da WEB APP</h1>
-        <h1>Uso de render_template</h1>
-        <h1>feito por Felipe Mortari</h1>
-    </body>
+{% extends "base.html" %}
+
+<body style="background-color: darkslategrey;">
+    {% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<h4 class="titulo">Bem vindo ao site</h4>
+<br><br><br><br><br>
+    {% endblock %}
+</div>
+</body>
+
 </html>
