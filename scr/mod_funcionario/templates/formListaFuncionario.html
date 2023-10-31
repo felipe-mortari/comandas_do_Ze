@@ -55,14 +55,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
+            <trscope="row"> {{ row['id_funcionario'] }}</th>
+            <td> {{ row['nome'] }}</td>
+            <td> {{ row['matricula'] }}</td>
+            <td> {{ row['cpf'] }}</td>
+            <td> {{ row['telefone'] }}</td>
+            <td> {{ row['grupo'] }}</td>
+            <td> {{ row['senha'] }}</td>
                 <td style="background-color: darkgoldenrod;"><i class="fas fa-edit">editar</i></td>
                 <td style="background-color: rgb(161, 27, 27);"><i class="fas fa-trash">apagar</i></td>
             </tr>
