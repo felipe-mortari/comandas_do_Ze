@@ -34,7 +34,7 @@
     {% block title %}Clientes{% endblock %}
 
     {% block content %}
-    <form action="{{ url_for('cliente.formCliente') }}" method="GET">
+    <form action="{{ url_for('cliente.formCliente') }}" method="POST">
         <h1>Clientes</h1>
         <button type="submit" name="formNovo">Novo</button>
         </form>
@@ -44,18 +44,24 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Telefone</th>
-                <th scope="col">Senha</th>
                 <th scope="col">CPF</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Compra fiado</th>
+                <th scope="col">Data fiado</th>
+                <th scope="col">Senha</th>
             </tr>
         </thead>
         <tbody>
+            {% if result %}
+            {% for row in result %}
             <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
+                <th scope="row"> {{ row['id_cliente'] }}</th>
+                <td> {{ row['nome'] }}</td>
+                <td> {{ row['cpf'] }}</td>
+                <td> {{ row['telefone'] }}</td>
+                <td> {{ row['compra_fiado'] }}</td>
+                <td> {{ row['dia_fiado'] }}</td>
+                <td> {{ row['senha'] }}</td>
                 <td style="background-color: darkgoldenrod;"><i class="fas fa-edit">editar</i></td>
                 <td style="background-color: rgb(184, 20, 11);"><i class="fas fa-trash">apagar</i></td>
             </tr>

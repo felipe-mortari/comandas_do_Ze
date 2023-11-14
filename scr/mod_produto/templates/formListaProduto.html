@@ -52,15 +52,19 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">...</th>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td style="background-color: rgb(173, 9, 9);"><i class="fas fa-edit">editar</i></td>
-                <td style="background-color: darkgoldenrod;"><i class="fas fa-trash">apagar</i></td>
-            </tr>
+                {% if result %}
+                {% for row in result %}
+                <tr>
+                    <th scope="row">{{ row['id_produto'] }}</th>
+                    <td> {{ row['foto'] }}</td>
+                    <td> {{ row['nome'] }}</td>
+                    <td> {{ row['descricao'] }}</td>
+                    <td> {{ row['valor_unitario'] }}</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fas fa-trash"></i></td>
+                  </tr>
+                {% endfor %}
+                {% endif %}
         </tbody>
     </table>
     {% endblock %}
