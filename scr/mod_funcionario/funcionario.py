@@ -2,7 +2,7 @@ import requests
 from settings import HEADERS_API, ENDPOINT_FUNCIONARIO
 import pdb
 from funcoes import Funcoes
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 bp_funcionario = Blueprint('funcionario', __name__, url_prefix="/funcionario", template_folder='templates')
 
 ''' rotas dos formulários '''
@@ -53,3 +53,19 @@ def insert():
       
     except Exception as e:
       return render_template('formListaFuncionario.html', msgErro=e.args[0])
+
+@bp_funcionario.route('/delete', methods=['POST'])
+def delete():
+  try:
+      # dados enviados via FORM
+      id_funcionario = request.form['id_funcionario']
+      # executa o verbo DELETE da API e armazena seu retorno
+      response = requests.delete(ENDPOINT_FUNCIONARIO + id_funcionario, headers=HEADERS_API)
+      result = response.json()
+      if (response.status_code != 200 or result[1] != 200):
+          raise Exception(result[0])
+      # return redirect(url_for('funcionario.formListaFuncionario', msg=result[0]))
+      return jsonify(erro=False, msg=result[0])
+  except Exception as e:
+      # return render_template('formListaFuncionario.html', msgErro=e.args[0])
+      return jsonify(erro=True, msgErro=e.args[0])
