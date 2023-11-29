@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta charset="UTF-8">
-
-    <title>Clientes</title>
-<style>
-button{
-    border-radius: 4px;
-    color: aliceblue;
-    background-color: rgb(5, 97, 90);
-}
-
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
 <body>
+
     {% extends "base.html" %}
-    {% block title %}Clientes{% endblock %}
+
+    {% block title %}Cliente{% endblock %}
+
     {% block content %}
-    <form name="formAdicionar" id="formAdicionar" action="" method="POST">
-        <h1>Clientes</h1>
-        <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
-        <label for="id">Código</label>
-        <br>
-        <input type="text" name="nome" id="nome" value="" placeholder="Nome Funcionário" maxlength="100" autofocus
-            required>
-        <label for="nome">Nome</label>
-        <br>
-        <label for="dia_fiado">Dia fiado:</label>
-        <input type="text" name="dia_fiado" id="dia_fiado" value="" placeholder="10" maxlength="100" autofocus required class="form-control">
-        <br>
-        <label for="compra_fiado">Compra Fiado:</label>
-        <select name="compra_fiado" id="compra_fiado" aria-label="Compra Fiado" class="form-control" required>
-            <option value=0 >Sim</option>
-            <option value=1 >Não</option>
-          </select>
-        <br>
-        <input type="text" name="cpf" id="cpf" value="" placeholder="CPF" maxlength="15" required>
-        <label for="cpf">CPF</label>
-        <br>
-        <input type="tel" name="telefone" id="telefone" value="" placeholder="Telefone" maxlength="15" required>
-        <label for="telefone" class="form-label">Telefone</label>
-        <br>
-        <input type="password" name="senha" id="senha" value="Bolinhas" placeholder="Senha" required>
-        <label for="senha">Senha</label>
-        <br>
-        <input type="password" name="resenha" id="resenha" value="Bolinhas" placeholder="Senha" required>
-        <label for="resenha">reSenha</label>
-        <br>
-        <button  type='submit' name='salvaUsuarioDB' id='salvaUsuarioDB'><i class='fas fa-save'></i> Salvar</button>
+
+<div class="container">
+    <form name="formAdicionar" id="formAdicionar" action="url_forl('cliente.insert')" method="POST" class="mt-5">
+        <h2>Cadastro de Clientes</h2>
+            <div class="form-group">
+                <label for="id">ID do Cliente:</label>
+                <input type="text" name="id" id="id" value="0" placeholder="Código" readonly class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nome" value="" placeholder="Nome" maxlength="100" autofocus required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="dia_fiado">Dia fiado:</label>
+                <input type="text" name="dia_fiado" id="dia_fiado" value="" placeholder="10" maxlength="100" autofocus required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" name="cpf" id="cpf" value="" placeholder="CPF" maxlength="15" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="compra_fiado">Compra Fiado:</label>
+                <select name="compra_fiado" id="compra_fiado" aria-label="Compra Fiado" class="form-control" required>
+                    <option value=0 >Sim</option>
+                    <option value=1 >Não</option>
+                  </select>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" name="telefone" id="telefone" value="" placeholder="Telefone" maxlength="15" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" id="senha" value="" placeholder="Senha" required class="form-control">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
+</div>
 
-    <script>
-        // Aplicar máscaras aos campos
-        var cpfMask = new IMask(document.getElementById('cpf'), { mask: '000.000.000-00' });
-        var telMask = new IMask(document.getElementById('telefone'), { mask: '(00) 00000-0000' });
-        var diaFiadoMask = new IMask(document.getElementById('dia_fiado'), { mask: '00/00/0000' });
-    
-        // Limpar os campos após o envio
-        //$('#employee-registration-form')[0].reset();
-    </script>
-    {% endblock %}
+<script>
+    // Aplicar máscaras aos campos
+    var cpfMask = new IMask(document.getElementById('cpf'), { mask: '000.000.000-00' });
+    var telMask = new IMask(document.getElementById('telefone'), { mask: '(00) 00000-0000' });
+    var diaFiadoMask = new IMask(document.getElementById('dia_fiado'), { mask: '00/00/0000' });
+
+    // Limpar os campos após o envio
+    //$('#employee-registration-form')[0].reset();
+</script>
+{% endblock %}
 </body>
-
 </html>

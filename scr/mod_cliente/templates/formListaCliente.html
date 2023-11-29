@@ -2,30 +2,40 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta charset="UTF-8">
+    <title>Clientes</title>
 
-    <title>CLIENTES</title>
-<style>
-    th {
-        background-color: rgb(18, 53, 50);
-        text-align: center;
-        color: aliceblue;
-        padding: 20px;
-        padding-left: 85px;
-        padding-right: 85px;
-        border-color: black;
-        border-radius: 2px;
-    }
-    td {
-        background-color: rgb(142, 143, 143);
-        text-align: center;
-        color: rgb(255, 255, 255);
-        padding: 15px;
-        border-color: black;
-        border-radius: 2px;
-    }
-</style>
+    <style>
+        /* Estilo para a tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Estilo para o botão "Cliente" */
+        .btn-novo-cliente {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .btn-novo-cliente:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,13 +44,14 @@
     {% block title %}Clientes{% endblock %}
 
     {% block content %}
-    <form action="{{ url_for('cliente.formCliente') }}" method="POST">
+    <form action="{{ url_for('cliente.formCliente') }}" method="get">
         <h1>Clientes</h1>
-        <button type="submit" name="formNovo">Novo</button>
-        </form>
-        <br>
-    <table>
-        <thead>
+        <button type="submit" name="formNovo" class="btn-novo-cliente">Cadastrar cliente</button>
+    </form>
+    <br>
+    <br>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
@@ -62,11 +73,16 @@
                 <td> {{ row['compra_fiado'] }}</td>
                 <td> {{ row['dia_fiado'] }}</td>
                 <td> {{ row['senha'] }}</td>
-                <td style="background-color: darkgoldenrod;"><i class="fas fa-edit">editar</i></td>
-                <td style="background-color: rgb(184, 20, 11);"><i class="fas fa-trash">apagar</i></td>
+                <td><i class="fas fa-edit"></i></td>
+                <td><i class="fas fa-trash"></i></td>
             </tr>
+            {% endfor %}
+            {% endif %}
         </tbody>
     </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     {% endblock %}
 </body>
 

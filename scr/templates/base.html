@@ -2,104 +2,93 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2/sweetalert2.min.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <title>{% block title %}{% endblock %} - COMANDAS</title>
 
-    <title>{% block title %}{% endblock %}</title>
-    {% block style %}
-    <style>
-        body {
-            background: #062827;
-            color: #ffffff;
-          
-        }
-
-        .content {
-            min-height: calc(100vh - 70px);
-            /* Ajuste a altura conforme necessário */
-        }
-
-        .footer {
-            background-color: #343a40;
-            /* Cor de fundo do rodapé */
-            color: #fffdfd;
-            /* Cor do texto no rodapé */
-            text-align: center;
-            padding: 10px;
-            position: absolute;
-            bottom: 0;
-            width: 85%;
-           
-
-        }
-
-        .navbar {
-            display: flex;
-            background-color: rgb(21, 85, 83);
-            color: #fffdfd;
-        }
-
-        .col-sm-2,
-        .col-sm-4,
-        .col-sm-3 {
-            color: aliceblue;
-            font-size: large;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        a {
-            color: rgb(246, 247, 248);
-            text-decoration: none;
-        }
-        .menupricipal{
-            font-size: medium;
-            color: aliceblue;
-
-        }
-    </style>
-    {% endblock %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  {% block style %}
+  <style>
+    .important {
+      color: #6495ED;
+    }
+  </style>
+  {% endblock %}
 </head>
 
-<body>
-
-    {% block menu %}
-    <nav class="navbar">
-        <div class="container mt-4">
-            <h1 class="menuprincipal">Comandas do zé</h1>
-            <!-- Grid do Bootstrap para alinhar elementos lado a lado -->
-            <div class="row">
-                <div class="col-sm-2">
-                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('index.formIndex') }}">HOME</a>
-                </div>
-                <div class="col-sm-4">
-                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('funcionario.formListaFuncionario') }}">FUNCIONÁRIOS</a>
-                </div>
-                <div class="col-sm-3">
-                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('cliente.formListaCliente') }}">CLIENTES</a>
-                </div>
-                <div  class="col-sm-3">
-                    <a style="text-decoration-line: none; color: #bdfaff;" href="{{ url_for('produto.formListaProduto') }}">PRODUTOS</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    {% endblock %}
-
-    <div class="container">
-        {% block content %}{% endblock %}
-        {% block footer %}
-        <div class="footer">
-            &copy; Copyright 2023 by <a href="http://127.0.0.1:5000/">Felipe Kruchinschi Mortari</a>.
-        </div>{% endblock %}
+<body  style="background-color: #1f1f1f;">
+  {% block menu %}
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #22300B;">
+    <a class="navbar-brand" href="{{ url_for('index.formListaIndex') }}" style="margin-left: 10px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">COMANDAS DO ZÉ</a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav" style="margin-right: 150px; font-size: medium;">
+      <ul class="navbar-nav">
+        <li class="nav-item" style="font-size:  large;">
+          <a class="nav-link" href="{{ url_for('funcionario.formListaFuncionario') }}">Funcionários</a>
+        </li>
+        <li class="nav-item" style="font-size:  large;">
+          <a class="nav-link" href="{{ url_for('produto.formListaProduto') }}">Produtos</a>
+        </li>
+        <li class="nav-item" style="font-size:  large;">
+          <a class="nav-link" href="{{ url_for('cliente.formListaCliente') }}">Clientes</a>
+        </li>
+        <li class="nav-item" style="font-size: large;">
+          <a class="nav-link" href="{{ url_for('login.logoff') }}"><i class="fas fa-sign-out-alt"></i>Sair</a>
+        </li>
+      </ul>
     </div>
+</nav>
 
-    {% block js %}
-    <script src="{{ url_for('static', filename='jquery-3.7.1.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+  {% endblock %}
+
+  <div class="container mt-5 mb-5" style="background-color: #1f1f1f;">
+    <!-- Adicionei margens para evitar que o conteúdo seja sobreposto pelas barras -->
+    {% block content %}
+    <!-- Seu conteúdo vai aqui -->
     {% endblock %}
+  </div>
+
+  <footer class="navbar navbar-dark bg-dark text-white text-center py-3 fixed-bottom">
+    <div class="container">
+      <p class="mb-0">
+        <a style="color: #ffffff;" href="http://127.0.0.1:5000/">Felipe Kruchinschi Mortari</a> &copy; Copyright 2023
+      </p>
+    </div>
+  </footer>
+
+  {% block js %}{% endblock %}
+  <script src="{{ url_for('static', filename='jquery-3.7.1.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.maskedinput.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='fontawesome-free-6.4.2-web/js/all.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- redirect - request.args.get('msg' ou 'msgErro') -->
+  {% if request.args.get('msg'): %}
+    <script>
+      Swal.fire("Sucesso", "{{ request.args.get('msg') }}", "success");
+    </script>
+  {% elif request.args.get('msgErro'): %}
+    <script>
+      Swal.fire("Erro", "{{ request.args.get('msgErro') }}", "error");
+    </script>
+  <!-- render_template - msg ou msgErro -->
+  {% elif msg: %}
+    <script>
+      Swal.fire("ID {{ msg.id }}, {{ msg.msg }} ", "{{ msg }}", "success");
+    </script>
+  {% elif msgErro: %}
+    <script>
+      Swal.fire("{{ msgErro.msg if msgErro.msg else 'Erro' }}", "{{ msgErro }}", "error");
+    </script>
+  {% endif %}
 
 </body>
 
