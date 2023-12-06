@@ -48,6 +48,10 @@
         <h1>Clientes</h1>
         <button type="submit" name="formNovo" class="btn-novo-cliente">Cadastrar cliente</button>
     </form>
+    <form action="{{ url_for('cliente.pdfTodos') }}" method="POST" class="row">
+        <button target="_blank" href="{{ url_for('cliente.pdfTodos') }}" class="btn btn-md col-2 m-2" style="background-color: rgb(240, 151, 43);">PDF</button>
+      </form>
+    
     <br>
     <!-- Botão para gerar PDF -->
     <button onclick="gerarPDF()">Gerar PDF</button>

@@ -1,14 +1,16 @@
 import requests
 from settings import HEADERS_API, ENDPOINT_FUNCIONARIO
+from flask import send_file
+from mod_funcionario.PdfFuncionario import PDF
 import pdb
 from funcoes import Funcoes
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
-from mod_login.login import validaSessao
+
 bp_funcionario = Blueprint('funcionario', __name__, url_prefix="/funcionario", template_folder='templates')
 
 ''' rotas dos formulários '''
 @bp_funcionario.route('/', methods=['GET','POST'])
-@validaSessao
+
 def formListaFuncionario():
   try:
     response = requests.get(ENDPOINT_FUNCIONARIO, headers=HEADERS_API)
@@ -22,12 +24,12 @@ def formListaFuncionario():
     return render_template('formListaFuncionario.html', msgErro=e.args[0])
 
 @bp_funcionario.route('/form-funcionario/', methods=['POST'])
-@validaSessao
+
 def formFuncionario():
   return render_template('formFuncionario.html')
 
 @bp_funcionario.route('/insert', methods=['POST'])
-@validaSessao
+
 def insert():
     try:
         # dados enviados via FORM
@@ -59,7 +61,7 @@ def insert():
       return render_template('formListaFuncionario.html', msgErro=e.args[0])
 
 @bp_funcionario.route("/form-edit-funcionario", methods=['POST'])
-@validaSessao
+
 def formEditFuncionario():
     try:
         # ID enviado via FORM
@@ -81,7 +83,7 @@ def formEditFuncionario():
       return render_template('formListaFuncionario.html', msgErro=e.args[0])
 
 @bp_funcionario.route('/edit', methods=['POST'])
-@validaSessao
+
 def edit():
     try:
       # dados enviados via FORM
@@ -110,7 +112,7 @@ def edit():
       return render_template('formListaFuncionario.html', msgErro=e.args[0])
 
 @bp_funcionario.route('/delete', methods=['POST'])
-@validaSessao
+
 def delete():
     try:
       # dados enviados via FORM
@@ -128,3 +130,10 @@ def delete():
     except Exception as e:
       # return render_template('formListaFuncionario.html', msgErro=e.args[0])
       return jsonify(erro=True, msgErro=e.args[0])
+
+@bp_funcionario.route('/pdfTodos', methods=['GET', 'POST'])
+
+def pdfTodos():
+    geraPdf = PDF()
+    geraPdf.listaTodos()
+    return send_file('..\pdfFuncionarios.pdf')
